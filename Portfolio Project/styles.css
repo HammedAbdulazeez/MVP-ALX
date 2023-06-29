@@ -1,50 +1,96 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+/* Reset default styles */
+body, h1, h2, h3, p, ul, li {
   margin: 0;
   padding: 0;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content:center;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+section#hero {
+  background-image: url("hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 100px;
+  color: #0a0a0a;
+}
+
+section#hero h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+section#hero p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+a.btn:hover {
+  background-color: #555;
+}
+
+section#features {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 0;
+}
+
+section#features .feature {
+  text-align: center;
+}
+
+section#features img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-h1 {
-  color: #333;
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-p {
-  color: #666;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  color: #333;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.button {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #0056b3;
+footer p {
+  font-size: 14px;
 }

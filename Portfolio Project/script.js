@@ -1,57 +1,59 @@
-window.addEventListener('DOMContentLoaded', fetchData);
-
-function fetchData() {
-  const resourceUrl = 'https://org12f20a88.crm4.dynamics.com/api/data/v9.2/contacts';
-  
+// Function to make an HTTP GET request to the Dynamics 365 Web API
+function fetchContactInformation() {
+  const dynamics365Url = 'https://org12f20a88.api.crm4.dynamics.com/api/data/v9.2';
+  const entitySetName = 'contacts';
   const clientId = '529781cd-e4f1-4e37-806b-731f3c17d4d7';
-  const redirectUri = 'http://localhost:5500';
-  
+  const clientSecret = 'ndz8Q~l3gHbq68AJvaRJIqXXAnuTcZzKYhoY8axC';
+  const tenantid = '2925e666-f610-4204-8180-cc44899faf54';
+  // const redirectUrl = "http://localhost:5500/index.html";
 
-  getToken()
-    .then(accessToken => {
-      fetch(resourceUrl, {
-        headers: {
-          'Authorization': 'Bearer ' + accessToken,
-          'OData-MaxVersion': '4.0',
-          'OData-Version': '4.0',
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        }
+  // Generate the authorization token
+  const tokenEndpoint = `https://127.0.0.1:55633'/https://login.microsoftonline.com/2925e666-f610-4204-8180-cc44899faf54/oauth2/token`;
+  const tokenRequestParams = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}&resource=${dynamics365Url}`;
+  const tokenRequestHeaders = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  };
+ 
+  // Make the token request
+  fetch(tokenEndpoint, {
+    method: 'POST',
+    headers: tokenRequestHeaders,
+    body: tokenRequestParams
+  })
+    .then(response => response.json())
+    .then(tokenResponse => {
+      const accessToken = tokenResponse.access_token;
+
+      // Define the request headers
+      const requestHeaders = {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8'
+      };
+
+      // Define the request URL
+      const requestUrl = `${dynamics365Url}/${entitySetName}(contactId)?$select=fullname,emailaddress1,telephone1`;
+
+      // Make the request to fetch contact information
+      fetch(requestUrl, {
+        method: 'GET',
+        headers: requestHeaders
       })
         .then(response => response.json())
-        .then(data => {
-          const dataListElement = document.getElementById('data-list');
-          data.value.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item.name; // Update with the desired data field
-            dataListElement.appendChild(listItem);
-          });
+        .then(contact => {
+          // Update the HTML elements with the contact information
+          document.getElementById('name').textContent = contact.fullname;
+          document.getElementById('email').textContent = contact.emailaddress1;
+          document.getElementById('phone').textContent = contact.telephone1;
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          console.error('Error fetching contact information:', error);
+        });
     })
-    .catch(error => console.error(error));
-
-  function getToken() {
-    return new Promise((resolve, reject) => {
-      const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUri}&scope=https://your-crm-instance/.default`;
-
-      const authWindow = window.open(authUrl, '_blank', 'width=600,height=600');
-
-      window.addEventListener('message', event => {
-        if (event.origin === window.location.origin) {
-          const accessToken = extractAccessToken(event.data);
-          authWindow.close();
-          resolve(accessToken);
-        } else {
-          reject(new Error('Failed to retrieve access token.'));
-        }
-      });
-
-      function extractAccessToken(url) {
-        const regex = /access_token=([^&]+)/;
-        const matches = url.match(regex);
-        return matches ? matches[1] : null;
-      }
+    .catch(error => {
+      console.error('Error fetching access token:', error);
     });
-  }
 }
+
+// Call the function to fetch and display contact information
+fetchContactInformation();
