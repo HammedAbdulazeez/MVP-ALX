@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url('https://fonts.googleapis.com/css?family=Exo:200,300,400&display=swap');
+
+
+
+body{
+    color: #162943 !important;
+    font-family: 'Exo', sans-serif !important;
+    
+}
+nav {
+    background-color: rgba(221, 211, 211, 0.041) !important;   
+}
+
+.signup_button > row {
+    margin: auto !important;
+
+}
+.login {
+    margin-top: .7rem !important;
+}
+.form-text {
+    color: white;
+    font-weight: 300;
+}
+.nav-height {
+    height: 94px !important;
+    padding-right: 10px !important;
+    padding-left: 20px !important;
+}
+.brand-logo{
+    font-family: 'Alfa Slab One', cursive !important;
+    padding-top: 14px !important;
+    
+}
+.other-font{
+    font-family: 'Exo', sans-serif !important;
+}
+.large-icon{
+    font-size: 40px !important;
+}
+.menu-mobile{
+    margin-top: 13px !important;
+}
+
+/* this will remove he background color on hover effect for links */
+a.bkground:hover{
+    background-color: inherit !important;
+    
+}
+
+/* main content background image */
+#main-content{
+    height: 10vh;
+    font-size: 16px;
+    background-image: linear-gradient(to bottom left , rgba(80, 99, 96, 0), rgb(28, 48, 16)), url("../images/steve-giampa-KmxV15oHt_4-unsplash.jpg");
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+input {
+    border-bottom: 2px solid white !important;
+}
+
+/* styling the mobile demo*/
+#mobile-demo {
+    
+}
+
+.mobile_text {
+    min-height: 25vh !important;
+    background-color: #2e7d32  !important;
+    color: aliceblue !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.cta {
+    color: #fff !important;
+    margin-top: 4rem !important;
+    /* margin-left: 5rem !important; */
+    font-weight: 300;
+    font-size: 4rem;
+    margin-right: 5rem !important;
+    margin-bottom: 0px !important;
+}
+.btn-started {
+    padding-top: 5px !important;
+    
+    height: 3rem !important;
+    align-self: center !important;
+    background-color: #2e7d32  !important;
+    /* border-radius: 5px !important; */
+}
+@media only screen and (min-width: 736px) {
+    .cta {
+        margin-left: 5rem !important;
+    }
+    .btn-started {
+        margin-left: 6rem !important;
+    }
+}
+
+
+@media only screen and (max-width: 736px) {
+    .cta {
+        font-size: 3rem;
+        margin-left: 3rem !important;
+    }
+    .btn-started {
+        margin-left: 3.5rem !important;
+    }
+    #main-checkout {
+        margin: 30%;
+    
+    }
+}
+.st {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+    margin:0;
+}
+
+#main {
+
+    /* background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%); */
+}
+.submain{
+    display: inline-block;
+    background: lavenderblush;
+    padding: 20px;
+}
+#img {
+    position: relative;
+    float: left;
+    width:  100%;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+@keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }
